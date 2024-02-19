@@ -16,6 +16,8 @@ function getProducts() {
     })
     .then(data => {
       showProducts(data)
+      addToCart(data)
+   
     })
     .catch(error => {
       console.error('Error:', error);
@@ -26,8 +28,8 @@ function showProducts(data) {
   let clutter = '';
   let products = document.querySelector('.products');
 
-  data.forEach(product => {
-    // console.log(product)
+  data.forEach((product, index) => {
+
     clutter += `<div class="product w-fit rounded-xl p-2 bg-white">
       <div class="image w-[14rem] h-[13rem] bg-zinc-200 rounded-xl"><img src="${product.image}" /></div>
       <div class="data w-full px-2 py-5">
@@ -37,8 +39,8 @@ function showProducts(data) {
                   <h3 class="font-semibold opacity-20">${product.rating.rate} rating</h3>
                   <h4 class="font-semibold mt-2">$${product.price}</h4>
               </div>
-              <button class="w-10 h-10 rounded-full shader text-yellow-400"><i
-                      class="ri-add-line"></i></button>
+              <button data-index="${index}" class="add w-10 h-10 rounded-full shader text-yellow-400"><i
+              data-index="${index}" class="add ri-add-line"></i></button>
           </div>
       </div>
     </div>`;
@@ -94,7 +96,6 @@ function getPopulersProducts() {
       description: "Indian made Men's Shoes"
     },
   ]
-
   showPopulersProducts(populer)
 }
 function showPopulersProducts(populer) {
@@ -116,3 +117,35 @@ function showPopulersProducts(populer) {
 }
 getPopulersProducts()
 getProducts()
+
+let cart = [];
+function addToCart(product) {
+  document.querySelector('.products')
+    .addEventListener('click', function (dets) {
+      if (dets.target.classList.contains('add')) {
+        cart.push(product[dets.target.dataset.index])
+        showTheCart(cart)
+      }
+    })
+
+}
+
+function showTheCart(cart) {
+  let clutter = "";
+  cart.forEach((prod, index) => {
+    clutter += `<div data-index="${index}" class="popular bg-white p-2 mt-2 rounded-2xl flex contetn-between items-start gap-3 w-[100%] flex-shrink-0">
+                  <div class="w-50 h-20  flex-shrink-0 rounded-2xl border-4 border-white overflow-hidden">
+                   <img class="w-full h-full object-cover"src="${prod.image}" alt=""/>
+                  </div>
+                  <h1 class="leading-none font-semibold">${prod.category}</h1>
+                  <h4 class="mt-3 font-semibold text-zinc-500">$${prod.price}</h4>
+                </div>`
+  })
+
+  document.querySelector('.carticon')
+    .addEventListener('click', function () {
+      document.querySelector('.cartexpnd').style.display = 'block'
+      document.querySelector('.cartexpnd').innerHTML = clutter;
+     
+    })
+}

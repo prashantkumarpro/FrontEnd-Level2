@@ -14,9 +14,9 @@
     <div class="w-full min-h-screen bg-zinc-100 font-['gilroy']">
         <div class="nav flex justify-between items-center px-5 py-5 relative">
             <i class="text-lg ri-menu-2-line"></i>
-            <i class="carticon text-lg ri-shopping-bag-2-fill"></i>
+            <i class="carticon cursor-pointer text-lg ri-shopping-bag-2-fill"></i>
             <div class="cartexpnd hidden w-52 bg-zinc-100 rounded-lg absolute top-[80%] right-5 flex flex-col gap-2">
-
+              
             </div>
         </div>
         <div class="input flex justify-between px-5 gap-2">
@@ -48,14 +48,27 @@
             </div>
         </div>
         <div class="products whitespace-nowrap flex overflow-auto px-5 gap-5">
-            
-           
+            <!-- <div class="product w-fit rounded-xl p-2 bg-white">
+                <div class="image w-[14rem] h-[13rem] bg-zinc-200 rounded-xl"><img src="${product.image}" /></div>
+                <div class="data w-full px-2 py-5">
+                    <h1 class="font-semibold text-xl leading-none tracking-tight">${product.category}</h1>
+                    <div class="flex justify-between w-full items-center mt-2">
+                        <div class="w-1/2">
+                            <h3 class="font-semibold opacity-20">${product.rating.rate} rating</h3>
+                            <h4 class="font-semibold mt-2">$${product.price}</h4>
+                        </div>
+                        <button class="w-10 h-10 rounded-full shader text-yellow-400"><i
+                                class="ri-add-line"></i></button>
+                    </div>
+                </div>
+              </div> -->
+
         </div>
         <div class="populardiv mt-5">
             <h3 class="text-2xl pl-5 font-semibold">Popular</h3>
             <div class="populars mt-5 flex whitespace-nowrap gap-5 overflow-auto w-full pl-5">
-             
-              
+
+
             </div>
         </div>
         <div class="footer flex items-center justify-between px-10 fixed bottom-0 left-0 w-full py-5 bg-white">
