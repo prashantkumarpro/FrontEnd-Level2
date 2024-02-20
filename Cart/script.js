@@ -17,7 +17,7 @@ function getProducts() {
     .then(data => {
       showProducts(data)
       addToCart(data)
-   
+     
     })
     .catch(error => {
       console.error('Error:', error);
@@ -124,28 +124,29 @@ function addToCart(product) {
     .addEventListener('click', function (dets) {
       if (dets.target.classList.contains('add')) {
         cart.push(product[dets.target.dataset.index])
-        showTheCart(cart)
+  
       }
     })
 
 }
 
-function showTheCart(cart) {
+function showTheCart() {
   let clutter = "";
-  cart.forEach((prod, index) => {
-    clutter += `<div data-index="${index}" class="popular bg-white p-2 mt-2 rounded-2xl flex contetn-between items-start gap-3 w-[100%] flex-shrink-0">
-                  <div class="w-50 h-20  flex-shrink-0 rounded-2xl border-4 border-white overflow-hidden">
-                   <img class="w-full h-full object-cover"src="${prod.image}" alt=""/>
-                  </div>
-                  <h1 class="leading-none font-semibold">${prod.category}</h1>
-                  <h4 class="mt-3 font-semibold text-zinc-500">$${prod.price}</h4>
-                </div>`
-  })
-
   document.querySelector('.carticon')
-    .addEventListener('click', function () {
-      document.querySelector('.cartexpnd').style.display = 'block'
-      document.querySelector('.cartexpnd').innerHTML = clutter;
-     
+  .addEventListener('click', function () {
+    document.querySelector('.cartexpnd').style.display = 'block'
+    cart.forEach((prod, index) => {
+      clutter += `<div data-index="${index}" class="flex gap-2 bg-white p-2 rounded-lg ">
+                    <div class="w-20 h-20  flex-shrink-0 rounded-lg overflow-hidden">
+                     <img class="w-full h-full object-cover" src="${prod.image}" alt=""/>
+                    </div>
+                    <div>
+                    <h3 class="font-semibold">${prod.category}</h3>
+                    <h5 class="text-sm font-semibold opacity-80">$${prod.price}</h5>
+                    </div>
+                  </div>`
     })
+    document.querySelector('.cartexpnd').innerHTML = clutter;
+  })
 }
+showTheCart()
